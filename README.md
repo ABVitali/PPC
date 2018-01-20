@@ -1,2 +1,2 @@
 # PPC
-AC-Solver Programmation par contrainte
+AC-Solver Programmation par Contraintes
