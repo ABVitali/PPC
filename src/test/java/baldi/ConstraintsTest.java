@@ -56,19 +56,6 @@ public class ConstraintsTest {
     }
 
     @Test
-    public void three() {
-        for (String alg : ALGS) {
-            Propagation propagation = new Propagation();
-            Variable<Integer> x = var("x", propagation, 1, 2, 3, 4, 5, 6, 7, 8);
-            Variable<Integer> y = var("y", propagation, 1, 2, 3, 4, 5, 6, 7, 8);
-            Variable<Integer> z = var("z", propagation, 1, 2, 3, 4, 5, 6, 7, 8);
-            propagation.add(constr(x, (var1, var2) -> var1 * 2 != var2, y, "AC3"));
-            propagation.add(constr(x, (var1, var2) -> var1 % 2 == var2 % 2, y, "AC3"));
-            propagation.add(constr(x, (var1, var2) -> var1 * 3 == var2, z, "AC3"));
-        }
-    }
-
-    @Test
     public void prettySimple() {
         for (String alg : ALGS) {
             Propagation propagation = new Propagation();
