@@ -18,10 +18,10 @@ To import the project there are essentially two ways:
    - Select the Pom file and then click on Finish button.
 
 ## How to create Variables
-It is possible to create some private methods to define more comfortable ways to add variables. For example in the actual main file there are "var" and "varRange". The only important thing is to define a type of the variable and to respect the sign of the constructor method. For example in the case of 8-queens test the variables are of type "Square" that represent a cell of the board.
+It is possible to create some private methods to define more comfortable ways to add variables. For example in the actual main file there are "var" and "varRange". The only important thing is to define a type of the variable and to respect the signature of the Variable constructor method.
 
 ```
-Variable constructor method sign:
+Variable constructor method signature:
    
    public Variable(String name, List<T> domain, Propagation propagation) {
 
@@ -39,9 +39,8 @@ private method varRange:
         List<Integer> domain = IntStream.range(from, to).boxed().collect(Collectors.toList());
         return new Variable<>(name, domain, propagation);
    }
-   
 ```
-#### N.B. to use after the class that implements the Backtracking it is needed to encapsulate all the variables in a list of variables.
+#### N.B. to use later the class that implements the Backtracking it is needed to encapsulate all the variables in a list of variables.
 
 ```
 List<Variable<Integer>> variables = new LinkedList<>();
@@ -50,8 +49,8 @@ Variable<Integer> y = var("y", propagation, 1);
 ```
 
 ## How to create Constraints
-It is possible to create some private methods to define more comfortable ways to write constraints. For example in the actual main file there are "constrInteger" and "constrSquare". The key part of this implementation is the usage of the class BinaryOperator that allows the user to write his own operator for any class needed. This means that we can define our own constraints of every type that can be useful for the actual target.
-The parameter "alg" is only a way to filter from using one or more AC-Algorithms.
+It is possible to create some private methods to define more comfortable ways to write constraints. For example in the actual main file there are "constrInteger" and "constrSquare". The key part of this implementation is the usage of the interface BinaryOperator that allows the user to write his own operator for any type of object as desired. This means that we can build our own type of constraints for every type of variables involved.
+The parameter "alg" is only a way to select one or more AC-Algorithms.
 
 Some examples:
 ```
@@ -117,7 +116,7 @@ And in the end we can run the Propagation
 propagation.run();
 ```
 
-At this point we will have filtered all the domains of the variables using the constraints choosen before. Now we want to look for a single solution using the Backtracking solver.
+At this point we will have filtered all the domains of the variables using the constraints choosen before. Now we want to look for a single solution using the Backtracking class.
 
 
 ## How to run the Backtracking
