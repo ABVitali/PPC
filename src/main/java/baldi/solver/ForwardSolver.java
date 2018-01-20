@@ -33,8 +33,7 @@ public class ForwardSolver<T> implements Solver<T> {
         while (0 <= i && i < variables.size()) {
             if (variables.get(i).getDomain().isEmpty()) {
                 //We have found that the current solution lead to an empty domain
-                System.out.println(variables.get(i) + " is empty");
-                i--;//We must go back
+            	i--;//We must go back
                 revert(i);//Undo the setting of the i-1 variable
                 resetFrom(i);//Reset all the domains of the (i,n) variables; the reset reapplies the constraints
             } else if (next(select(i))) {//select choose the variable and select the value, next check the consistency
@@ -49,7 +48,6 @@ public class ForwardSolver<T> implements Solver<T> {
     // Reset all the domain after the ith variable, and reapplies the constraints of variabiles <i
     private void resetFrom(int i) {
         for (int j = i + 1; j < variables.size(); j++) {
-            System.out.println("Resetting " + variables.get(j));
             Variable<T> var = variables.get(j);
             var.resetDomain();
             int i1 = variables.indexOf(var);
@@ -67,8 +65,6 @@ public class ForwardSolver<T> implements Solver<T> {
     private Variable<T> select(int i) {
         Variable<T> var = variables.get(i);
         List<T> domain = var.getDomain();
-        System.out.println("selecting  from " + var + ": " +
-                var.getDomain().stream().map(Object::toString).collect(joining(",")));
         T value = domain.get(0);
         solution.put(var, value);
         var.removeValue(value);
@@ -108,9 +104,7 @@ public class ForwardSolver<T> implements Solver<T> {
     //Restore the saved variable, discarding the previously selected value
     private void revert(int i) {
         Variable<T> var = selectedVariables.remove(i);
-        //System.out.println("reverting " + var);
         variables.set(i, var);//selected value was already removed
         constraints.forEach(constr -> constr.replace(var));
     }
-
 }
