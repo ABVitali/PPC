@@ -2,7 +2,20 @@
 AC-Solver: Programmation par Contraintes
 
 ## How to import the project
+The project is compatible with Eclipse. It was not tested with different IDE.
+To import the project there are essentially two ways:
 
+1) Using the git plugin in eclipse:
+   - git clone the project: https://github.com/ABVitali/PPC.git
+   - right click on the repository and click on "import projects".
+   - click on "finish" button.
+
+2) Download this repository from github:
+   - extract the folder inside
+   - open Eclipse
+   - in menu "file" click on "import". Then Maven -> "Existing Maven Projects"
+   - Select the path of the directory downloaded
+   - Select the Pom file and then click on Finish button.
 
 ## How to create Variables
 It is possible to create some private methods to define more comfortable ways to add variables. For example in the actual main file there are "var" and "varRange". The only important thing is to define a type of the variable and to respect the sign of the constructor method. For example in the case of 8-queens test the variables are of type "Square" that represent a cell of the board.
